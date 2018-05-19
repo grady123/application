@@ -1,0 +1,199 @@
+/*公共margin*/
+.common .ma{margin: auto!important;}
+.common .m0{margin:0 !important}
+.common .m5{margin:0.05rem !important}
+.common .m10{margin:.10rem !important}
+.common .m15{margin:.15rem !important}
+.common .m20{margin:.20rem !important}
+.common .m30{margin:.30rem !important}
+.common .mt0{margin-top:0 !important}
+.common .mt5{margin-top:.05rem !important}
+.common .mt7{margin-top:.07rem !important}
+.common .mt10{margin-top:.10rem !important}
+.common .mt14{margin-top:.14rem !important}
+.common .mt15{margin-top:.15rem !important}
+.common .mt20{margin-top:.20rem !important}
+.common .mt30{margin-top:.30rem !important}
+.common .mt60{margin-top:.60rem !important}
+.common .mt48{margin-top:.48rem !important}
+.common .mt96{margin-top:.96rem !important}
+.common .mr0{margin-right:0 !important}
+.common .mr5{margin-right:.05rem !important}
+.common .mr6{margin-right:.06rem !important}
+.common .mr12{margin-right:.12rem !important}
+.common .mr10{margin-right:.10rem !important}
+.common .mr15{margin-right:.15rem !important}
+.common .mr20{margin-right:.20rem !important}
+.common .mr30{margin-right:.30rem !important}
+.common .mr50{margin-right:.50rem !important}
+.common .mr60{margin-right:.60rem !important}
+.common .mr70{margin-right:.70rem !important}
+.common .mr75{margin-right:.75rem !important}
+.common .mr80{margin-right:.80rem !important}
+.common .mr90{margin-right:.90rem !important}
+.common .mr1000{margin-right:1rem !important}
+.common .mr140{margin-right:1.4rem !important}
+.common .mr120{margin-right:1.2rem !important}
+.common .mr190{margin-right: 1.9rem!important;}
+.common .mb0{margin-bottom:0!important}
+.common .mb5{margin-bottom:.05rem !important}
+.common .mb10{margin-bottom:.10rem !important}
+.common .mb15{margin-bottom:.15rem !important}
+.common .mb20{margin-bottom:.20rem !important}
+.common .mb30{margin-bottom:.30rem !important}
+.common .ml0{margin-left:0 !important}
+.common .ml5{margin-left:.05rem !important}
+.common .ml10{margin-left:.10rem !important}
+.common .ml70{margin-left:.70rem !important}
+/*.ml15{margin-left:15rem !important}*/
+.common .ml20{margin-left:.20rem !important}
+.common .ml25{margin-left:.25rem !important}
+.common .ml30{margin-left:.30rem !important}
+
+/*宽度*/
+.common .W-5{width:5%;}
+.common .W-8{width:8%;}
+.common .W-10{width:10%;}
+.common .W-13{width:13%;}
+.common .W-14{width:14%;}
+.common .W-15{width:15%;}
+.common .W-16{width:16%;}
+.common .W-165{width:16.5%;}
+.common .W-17{width:17%;}
+.common .W-20{width:20%;}
+.common .W-25{width:25%;}
+.common .W-33{width:33%;}
+.common .W-34{width:34%;}
+.common .W-50{width:50%;}
+.common .W-100{width:100%;}
+/*行高*/
+.common .lh10{  line-height: .10rem!important;}
+.common .lh15{  line-height: .15rem!important;}
+.common .lh18{  line-height: .18rem!important;}
+.common .lh36{  line-height: .36rem!important;}
+.common .lh20{  line-height: .20rem!important;}
+.common .lh30{  line-height: .30rem!important;}
+.common .lh70{  line-height: .70rem!important;}
+/*高*/
+.common .h70{  height: 0.7rem !important;}
+.common .h45{  height: 0.45rem !important;}
+/*公共padding*/
+.common .p0{padding:0 !important;}
+.common .p5{padding:.05rem !important}
+.common .p10{padding:.10rem !important}
+.common .p12{padding:.12rem !important}
+.common .p15{padding:.15rem !important}
+.common .p20{padding:.20rem !important}
+.common .p40{padding:.40rem !important}
+.common .p30{padding:.30rem !important}
+.common .pt0{padding-top:0 !important}
+.common .pt5{padding-top:.05rem !important}
+.common .pt6{padding-top:.06rem !important}
+.common .pt10{padding-top:.10rem !important}
+.common .pt15{padding-top:.15rem !important}
+.common .pt20{padding-top:.20rem !important}
+.common .pt25{padding-top:.25rem !important}
+.common .pt30{padding-top:.30rem !important}
+.common .pr0{padding-right:0 !important}
+.common .pr5{padding-right:.05rem !important}
+.common .pr10{padding-right:.10rem !important}
+.common .pr15{padding-right:.15rem !important}
+.common .pr20{padding-right:.20rem !important}
+.common .pr30{padding-right:.30rem !important}
+.common .pr60{padding-right:.60rem !important}
+.common .pb0{padding-bottom:0 !important}
+.common .pb5{padding-bottom:.04rem !important}
+.common .pb7{padding-bottom:.07rem !important}
+.common .pb10{padding-bottom:.10rem !important}
+.common .pb15{padding-bottom:.15rem !important}
+.common .pb20{padding-bottom:.20rem !important}
+.common .pb25{padding-bottom:.25rem !important}
+.common .pb30{padding-bottom:.30rem !important}
+.common .pl0{padding-left:0 !important}
+.common .pl5{padding-left:.05rem !important}
+.common .pl10{padding-left:.10rem !important}
+.common .pl15{padding-left:.15rem !important}
+.common .pl20{padding-left:.20rem !important}
+.common .pl30{padding-left:.30rem !important}
+.common .pl60{padding-left:.60rem !important}
+.common .pt10lr0{padding: .10rem 0 !important;}
+/*公共字体*/
+.common .fs10{font-size:.10rem!important}
+.common .fs11{font-size:.11rem!important}
+.common .fs12{font-size:.12rem!important}
+.common .fs13{font-size:.13rem!important}
+.common .fs14{font-size:.14rem!important}
+.common .fs15{font-size:.15rem!important}
+.common .fs16{font-size:.16rem!important}
+.common .fs22{font-size:.22rem!important}
+.common .fs26{font-size:.26rem!important}
+.common .fs17{font-size:.17rem!important}
+.common .fs18{font-size:.18rem!important}
+.common .fs20{font-size:.20rem!important}
+.common .fs24{font-size:.24rem!important}
+.common .fs28{font-size:.28rem!important}
+.common .fs29{font-size:.29rem!important}
+.common .fs32{font-size:.32rem!important}
+.common .normal{font-weight:normal}
+/*公共边框*/
+.common .b0{border:0 !important;}
+.common .bt0{border-top:0}
+.common .br0{border-right:0}
+.common .bb0{border-bottom:0!important;}
+.common .bb1{border-bottom:1px}
+.common .bl0{border-left:0}
+
+/*绿色*/
+.common .btDDDEE3{border-top:1px solid #DDDEE3;}
+.common .bt3BBA80{border-top:1px solid #F87F6E;}
+.common .btDDDEE3{border-top:1px solid #DDDEE3;}
+.common .bbDDDEE3{border-bottom:1px solid #DDDEE3;}
+/*公共样式*/
+.common .block{display:block}
+.common .hide{display:none !important;}
+.common .iblock{display:inline-block!important}
+.common .vm{vertical-align:middle}
+.common .tover{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.common .pr{position:relative}
+.common .pa{position:absolute}
+.common .pz{position:relative;z-index:9999}
+.common .flex{display:flex;align-items:center}
+/*公共浮动样式*/
+.common .fr{float:right}
+.common .fl{float:left}
+.common .clearfix{clear:both;overflow:hidden}
+.common .clearzoom{*zoom:1;}
+.common .clearfix:after{content:".";visibility:hidden;display:block;height:0;clear:both}
+.common .hidden{visibility:hidden}
+.common .bold{font-weight: bold !important;}
+
+/*公共color*/
+.common .c-000{color:#000!important}
+.common .c-222{color:#000!important}
+.common .c-333{color:#333!important}
+.common .c-999{color:#999!important}
+.common .c-ccc{color:#ccc!important}
+.common .c-fff{color:#fff!important}
+.common .c-95{color:#95989F!important}
+.common .c-777{color:#777E8C!important}
+.common .c-6DC{color:#6DC56E!important}
+.common .c-F99{color:#F99636!important}
+.common .c-339{color:#3395FF!important}
+.common .c-959{color:#95989F!important}
+.common .c-FF9{color:#FF9E01!important}
+
+/*蓝色*/
+.common .c-395{color:#3395FF!important}
+.common .c-3395FF{color:#3395FF!important}
+.common .c-fff600{color:#FFF600!important}
+.common .c-d8ffed{color:#D8FFED!important}
+.common .bor-active{border-bottom:.02rem solid #3395FF}
+/*字体*/
+.common .text-center{text-align: center!important;}
+.common .text-left{text-align: left!important;}
+.common .text-right{text-align: right!important;}
+/*头尾层级*/
+.common .fixed-top,.fixed-bottom{
+    z-index: 99!important;
+}
+.common .bs {box-sizing: border-box;}

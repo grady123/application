@@ -1,0 +1,55 @@
+<!-- 随手记科目选择页面 -->
+<div class="subject-select page p-t-88" id="note_taking_subject_select_wrap">
+    <header class="head">
+        <div class="go-back" @click="goBack"><a href="javascript:;" class="iconfont icon-fanhui"></a></div>
+        <div class="close"><a href="/index" class="iconfont icon-guanbi"></a></div>
+        <h2>预算科目选择</h2>
+    </header>
+    <section class="main bg-fff">
+        <div>
+            <!--查询-->
+            <div class="search">
+                <span class="search-icon"><i class="iconfont icon-sousuo"></i></span>
+                <input type="text" class="search-input" placeholder="请输入科目名称" v-model="searchVal" @input="search">
+            </div>
+            <!--导航-->
+            <div class="nav-list">
+                <ul class="clearfix" :style="{'width':navWidth}" v-show="!isHotSubject">
+                    <li
+                            @click="navClick(index, item)"
+                            v-if="navList.length"
+                            v-for="(item,index) in navList"
+                            :key="index"
+                            :class="{'color-95989F':index === navList.length-1}"
+                            ref="navList"
+                    >
+                        {{item.name}}
+                        <i
+                                class="iconfont icon-icon"
+                                v-show="index < navList.length-1"
+                        ></i>
+                    </li>
+                </ul>
+                <span v-show="isHotSubject" class="hot-subject-nav-text">常用预算科目</span>
+            </div>
+            <!--常用科目-->
+            <div class="history-list" v-show="isHotSubject">
+                <ul class="hot-subject-list clearfix">
+                    <li v-for="(history, index) in historyList" v-text="history.name" :key="history.id" @click="historyClick(history)">科目1</li>
+                </ul>
+            </div>
+
+            <!--查看全部-->
+            <div class="chaKanAll" v-show="isHotSubject"><span @click="cheKanAll">查看全部<i class="iconfont icon-right"></i></span></div>
+            <!--预算科目选择-->
+            <div class="subject-wrap" v-show="!isHotSubject">
+                <ul class="subject-list">
+                    <li @click="confirmSelect(item)" class="item clearfix" v-for="(item,index) in items" :key="item.id">
+                        <h4 class="name fl"><span v-text="item.name">公司</span><span v-if="item.childrenList.length" v-text="'('+item.childrenList.length+')'">（12）</span></h4>
+                        <span class="getChild fr rotate-180" @click="getChildrenList(item)" v-if="item.childrenList.length"><i class="iconfont icon-fanhui"></i></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</div>

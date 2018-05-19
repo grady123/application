@@ -1,0 +1,65 @@
+<div class="fixed-warp page-hide" v-bind:class="{pageShow:pageShow}">
+  <div class="fixed-top">
+    <div class="mobile-top-nag">
+      <div class="nag-button"><a href="/index/index.html"><i class="iconfont icon-fanhui"></i></a><a href="/index"><i class="iconfont icon-guanbi"></i></a></div>
+      报销管理</div>
+  </div>
+  <div class="fixed" ref="dataWarp">
+    <div class="mobile-search-warp">
+      <div class="mobile-search"><i class="iconfont icon-sousuo search" v-on:click="searchClic()"></i><i class="iconfont icon-shaixuan shaixuan" v-on:click="SelecShow('selec-type-show')"></i>
+        <input type="search" v-on:keypress="keysearch($event)" placeholder="请输入流程名称或申请人" v-model="modeS">
+      </div>
+      <div class="selec-type-warp">
+        <h3 class="selec-tyte-title">类型</h3>
+        <ul class="type-list">
+          <li class="type-list-selec" v-for="(d,n) in listType.data" v-bind:class="{typeListSelec:d.ks}" v-on:click="typeS(d,n)">{{d.shortName}}</li>
+        </ul>
+        <div class="selec-other-warp">
+          <h3 class="selec-tyte-title">创建时间</h3>
+          <ul class="type-list">
+            <li v-for="(d,n) in timeList.data" v-bind:class="{typeListSelec:d.ks}" v-on:click="timeS(d,n)">{{d.name}}</li>
+          </ul>
+        </div>
+        <div class="time-input-warp" ref="timeInputWarp">
+          <div class="selec-other-warp">
+            <div class="time-input"><span>开始时间</span>
+              <input type="date" v-model="modeTime1" placeholder="年-月-日" />
+            </div>
+          </div>
+          <div class="selec-other-warp">
+            <div class="time-input"><span>结束时间</span>
+              <input type="date" v-model="modeTime2" placeholder="年-月-日"/>
+            </div>
+          </div>
+        </div>
+        <div class="sele-button-warp">
+          <div class="buttom-left" v-on:click="reduction()">重置</div>
+          <div class="buttom-right" v-on:click="SelecHide('selec-type-show')">确定</div>
+        </div>
+      </div>
+    </div>
+    <i class="selec-bg" v-on:click="SelecHide('w','w')">&nbsp;</i>
+    <div class="list-hide-warp" id="scro">
+      <div v-if="listData.data.length>0"> <i class="lisg-hide-bg">&nbsp;</i>
+        <ul class="mobile-data-list" >
+          <li v-for="d in listData.data" v-on:click="GoDsc(d)">
+            <h3>{{d.reimburseTitle}}<span v-if="" v-bind:class="'state-tip state-tip'+d.approveStatus">{{d.approveStatus|tip}}</span></h3>
+            <p class="list-data"><span class="money-color">￥ {{d.totalMoney|setMoney}}</span> </p>
+            <p class="list-other"><span class="left-data">{{d.applyOrgName}}</span><span class="left-data">{{d.createbyName}}</span><span class="data-time">{{d.createDate|isNow}}</span></p>
+            <div class="list-operation" v-if="d.hasP"> <span class="oper-button" v-if="d.showButton1" v-on:click.stop="oper(d)">撤回</span>
+              <div v-if="d.showButton2"> <span class="oper-button"  v-on:click.stop="edit(d)">编辑</span> <span class="oper-button"  v-on:click.stop="dele(d)">删除</span> </div>
+              <div v-if="d.showButton3"> <span class="oper-button"  v-on:click.stop="edit(d)">编辑</span> <span class="oper-button"  v-on:click.stop="cancellation(d)">作废</span> </div>
+            </div>
+          </li>
+        </ul>
+        <div class="load-more-tip" v-if="listData" v-bind:class="{loadMoreLast:!listData.hasNext}"><span class="ld-tip1"><span class="load-more-warp"><i class="load-more">&nbsp;</i><i class="load-more-anm">&nbsp;</i></span><span class="ld-tip1-text">加载中...</span></span><span class="ld-tip2">没有更多了</span></div>
+      </div>
+      <div v-else class="nodata-tip">暂无数据</div>
+    </div>
+  </div>
+  <div class="fixed-bottom details-bg">
+    <div class="details-bottom-button">
+      <div class="details-buttom" v-on:click.stop="edit(false)">新增</div>
+    </div>
+  </div>
+</div>

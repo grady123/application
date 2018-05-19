@@ -1,0 +1,32 @@
+<div class="fixed-warp common bills"  id="bills">
+  <div class="fixed-top">
+    <div class="mobile-top-nag">
+      <div class="nag-button"><i class="iconfont go1 icon-fanhui"></i><a href="/index"><i class="iconfont icon-guanbi"></i></a></div>
+      选择借款单</div>
+  </div>
+  <div class="fixed">
+    <div  style="width: 100%;overflow: hidden;">
+      <ul>
+        <li v-for="(item,index) in data">
+          <div class="list bbDDDEE3">
+            <div class="status iconfont icon-yuanquan " :class="{'icon-gouxuanzhong':ary.indexOf(index)!=-1}" @click="select(index)"></div>
+            <div class=" content fr ">
+              <p class="pt10"><span class="pl10 ">{{item.borrowTitle}}</span> <span class="fr pr20">{{item.createDate|billsTime}}</span></p>
+              <p><i class="iconfont icon-renminbi fl"></i> <span class="fl">{{item.unpaymentMoney}}</span></p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="fixed-bottom details-bg btDDDEE3">
+    <div class="left">
+      <div class="fl vote" @click="allSelect=!allSelect;allSelect1(allSelect)">
+        <i class="iconfont icon-yuanquan"  :class="{'icon-gouxuanzhong':allSelect}"></i>
+        <span>全选</span>
+      </div>
+      <div class="fr"><span>合计：</span><span class="pr20 c-FF0">{{sum}}</span></div>
+    </div>
+    <div class="right fr"><span @click="confirm">确认核销（{{ary.length}}）</span></div>
+  </div>
+</div>

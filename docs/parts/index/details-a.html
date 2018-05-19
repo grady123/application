@@ -1,0 +1,73 @@
+<div class="fixed-warp" v-bind:class="{pageShow:pageShow}">
+  <div class="fixed-top">
+    <div class="mobile-top-nag">
+      <div class="nag-button"><i class="iconfont icon-fanhui" v-on:click="backOff()"></i></div>
+      查看{{data.title}}</div>
+  </div>
+  <div class="fixed">
+    <div class="details-bom-warp" v-if="data.type==1">
+      <div class="details-bom-data">
+        <p class="details-title">{{data.title}}</p>
+        <div class="list-warp">
+          <ul class="details-list">
+            <li><span>业务日期</span>{{data.data.businessDate|setT}}</li>
+            <li><span>预算科目</span>{{data.data.subjectName}}</li>
+            <li><span>预算单元</span>{{data.data.unitName}}</li>
+<!--            <li><span>账务组织</span>{{data.data.payUnit}}</li>
+            <li><span>账务部门</span>{{data.data.payDepartment}}</li>-->
+            <li><span>发票类型</span>{{data.data.invoiceType|iTyep}}</li>
+            <li><span>票据编号</span>{{data.data.invoiceNumber}}</li>
+            <li><span>开票内容</span>{{data.data.invoiceContent}}</li>
+            <li><span>不含税价</span>{{data.data.nonTaxMoney|setMoney}}</li>
+            <li><span>税率 (%)</span>{{data.data.taxRate}}</li>
+            <li><span>税<span class="nsb">占位</span>额</span>{{data.data.taxMoney|setMoney}}</li>
+            <li><span>税价合计</span>{{data.data.taxTotalMoney|setMoney}}</li>
+            <li><span>开票日期</span>{{data.data.invoiceDate|setT}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <ul class="materiel-list-warp" v-if="data.type==2">
+      <li>
+        <div class="materiel-data">
+          <h3>{{data.data.materName}}</h3>
+          <p>单位：{{data.data.unit}}</p>
+          <p>规格：{{data.data.specific}}</p>
+          <p>型号： {{data.data.model}}</p>
+          <p>供应商：{{data.data.supportShopName}}</p>
+          <p>数量：<span class="money-color">{{data.data.number}}</span></p>
+          <p>单价：<span class="money-color">{{data.data.priceUnit|setMoney}}</span></p>
+        </div>
+        <div class="materiel-numer-warp">
+          <p>金额：<span class="money-color">￥{{(data.data.number*data.data.priceUnit)|setMoney}}</span></p>
+        </div>
+      </li>
+    </ul>
+    <div v-if="data.type==3">
+      <table class="details-table">
+        <tr>
+          <th>预算单元</th>
+          <th>科目</th>
+          <th>期间</th>
+          <th>本次调整</th>
+        </tr>
+        <tr v-for="d in data.data" @click="show(d)" :class="{'table-slec ':d.show}">
+          <td><div class="table-data">{{d.unitName}} </div>
+            <div class="table-tip">
+              <p>{{d.unitName}}&nbsp;&nbsp;&nbsp;&nbsp;{{d.period}}</p>
+              <p>调整前总额：{{d.adjustBeforeCurrMoney|setMoney}}</p>
+              <p>使用：{{d.currUseMoney|setMoney}}</p>
+              <p>冻结：{{d.currFreezeMoney|setMoney}}</p>
+              <p>余额：{{d.currRemainMoney|setMoney}}</p>
+              <p>本次调整：{{d.currAdjustMoney|setMoney}}</p>
+            </div></td>
+          <td><div class="table-data">{{d.itemName}}</div></td>
+          <td><div class="table-data">{{d.period}}</div></td>
+          <td><div class="table-data">{{d.currAdjustMoney|setMoney}}</div></td>
+        </tr>
+      </table>
+      <div></div>
+     
+    </div>
+  </div>
+</div>

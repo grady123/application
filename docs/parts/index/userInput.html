@@ -1,0 +1,192 @@
+<div class="fixed-warp common "  id="fillForm">
+  <div class="fixed-top ">
+    <div class="mobile-top-nag">
+      <div class="nag-button"><i class="iconfont icon-fanhui" @click="GoPage"></i><a href="/index"><i class="iconfont icon-guanbi"></i></a></div>
+      报销申请</div>
+  </div>
+  <div class="fixed " ref="scroll_wrapper">
+    <div style="width: 100%; overflow: hidden;">
+      <ul class="user-input-list-warp">
+        <li class="column  pl10 back_E1EF" v-show="extent.length!=0" >
+          <span class="iconfont1 iconfont icon-tixing"></span>
+          <span class="c-FF9">您有{{repay}}&nbsp借款待还，请点击此处选择。</span>
+          <i class="iconfont3 iconfont icon-xuanze" @click="bill"></i>
+        </li>
+        <li class="column">
+          <span class="user-input-left ">基本信息</span>
+        </li>
+        <li>
+          <span class="user-input-left">主<span class="nsb">占位</span>题</span>
+          <div class="user-input-right">
+            <input type="text" placeholder="请填写（必填）"  required="required" v-model="reimburseTitle"  >
+          </div>
+        </li>
+        <li>
+          <span class="user-input-left">报  销  人</span>
+          <div class="user-input-right" id="applyMan">
+            <input type="text"  :value="createbyName+'    '+applyOrgName" onfocus="this.blur()"    readonly>
+          </div><i class="iconfont icon-xiangyou"></i>
+        </li>
+        <li>
+          <span class="user-input-left">报销金额</span>
+          <div class="user-input-right"  @click="menu=!menu">
+            <input type="text" readonly onfocus="this.blur()"   v-model="submitMoney" >
+          </div>
+          <i class="iconfont icon-xiangyou " :class="menu?'rotate1':'rotate'"></i>
+        </li>
+        <li  v-show="menu">
+          <span class="user-input-left">含税合计</span>
+          <div class="user-input-right">
+            <input type="text"  readonly onfocus="this.blur()"   v-model="totalMoney">
+          </div>
+        </li>
+        <li  v-show="menu">
+          <span class="user-input-left">税<span class="nsb">占位</span>额</span>
+          <div class="user-input-right">
+            <input type="text"  readonly onfocus="this.blur()"  v-model="taxMoney" >
+          </div>
+        </li>
+        <li  v-show="menu">
+          <span class="user-input-left">核销借款</span>
+          <div class="user-input-right">
+            <input type="text"  readonly onfocus="this.blur()"  v-model="sum">
+          </div>
+        </li>
+        <li v-show="initData.dateflag==1">
+          <span class="user-input-left" >归属日期</span>
+          <div class="user-input-right">
+            <input type="text"  readonly id="date-selec" onfocus="this.blur()"   v-model="collectionDate" >
+          </div>
+          <i class="iconfont icon-xiangyou "></i>
+        </li>
+        <li id="pay_type" v-show="environment==1">
+          <span class="user-input-left" >付款性质</span>
+          <div class="user-input-right" >
+            <input type="text" :value="paymentPropertyName"  readonly onfocus="this.blur()"   >
+          </div>
+          <i class="iconfont icon-xiangyou "></i>
+        </li>
+      </ul>
+      <ul class="user-input-list-warp mt20 ">
+        <li class="column btDDDEE3 bb0">
+          <span class="user-input-left " >报销明细</span>
+        </li>
+        <!-- ----------------------------------------------->
+        <ul class="user-input-list-warp" v-for="(item,index) in itemList" >
+          <li class="column btDDDEE3 ">
+            <span class="user-input-left" style="width: 3rem">报销明细<span>（{{index+1}}）</span></span>
+            <span class="fr pr20 c-339" v-show="itemList.length!=1" @click="deleteFiles2(index)">删除</span>
+          </li>
+          <li>
+            <span class="user-input-left">业务日期</span>
+            <div class="user-input-right">
+              <input type="text"       :id="'dateSelec'+index" onfocus="this.blur()"   v-model="item.businessDate" class="dateSelec" placeholder="请选择（必选）" readonly>
+            </div> <i class="iconfont icon-xiangyou"></i>
+          </li>
+          <li>
+            <span class="user-input-left">预算科目</span>
+            <div class="user-input-right"  @click="budgetsubject(index)">
+              <input type="text"    readonly onfocus="this.blur()"    placeholder="请选择（必选）"  v-model="item.subjectName" >
+            </div> <i class="iconfont icon-xiangyou"></i>
+          </li>
+          <li>
+            <span class="user-input-left">预算单元</span>
+            <div class="user-input-right"  @click="selChange(index)">
+              <input type="text"    readonly onfocus="this.blur()"   placeholder="请选择（必选）"  v-model="item.unitName">
+            </div> <i class="iconfont icon-xiangyou"></i>
+          </li>
+          <li>
+            <span class="user-input-left">票据类型</span>
+            <div class="user-input-right">
+              <input type="text"    readonly  onfocus="this.blur()"   :id="'repayment'+index"  placeholder="请选择（必选）" v-model="item.invoiceType" >
+            </div> <i class="iconfont icon-xiangyou"></i>
+          </li>
+          <li>
+            <span class="user-input-left">不含税价</span>
+            <div class="user-input-right">
+              <input type="number" placeholder="（必填）"  oninput="if(value.length>13)value=value.slice(0,13)"  v-model="item.nonTaxMoney">
+            </div>
+          </li>
+          <li>
+            <span class="user-input-left">税率（%）</span>
+            <div class="user-input-right">
+              <input type="text"    readonly v-model="item.taxRate"  onfocus="this.blur()"  :id="'taxRate'+index"  placeholder="请选择（必选）" >
+            </div> <i class="iconfont icon-xiangyou"></i>
+          </li>
+          <li>
+            <span class="user-input-left">税<span class="nsb">占位</span>额</span>
+            <div class="user-input-right">
+              <input type="text"    readonly  onfocus="this.blur()"   v-model="item.taxMoney"   >
+            </div>
+          </li>
+          <li class="bb0 ">
+            <span class="user-input-left">价税合计</span>
+            <div class="user-input-right b0">
+              <input type="text"    readonly onfocus="this.blur()"    v-model="item.taxTotalMoney"  >
+            </div>
+          </li>
+          <li   class="distance" v-show="(index+1)!=itemList.length"></li>
+          <!--<textarea class="userinput-textares" placeholder="报销说明（必填）"      ></textarea>-->
+        </ul>
+        <!------------------NED-------------------------->
+      </ul>
+      <div class="enc-warp  mt0  ">
+        <p class="enc-data b0 p0" @click="addition" ><span class="c-395 iconfont icon-tianjia addicon">   添加支付明细</span></p>
+      </div>
+      <div class="enc-warp  has-bottom mb20">
+        <p class="enc-title pr0" @click="menu1=!menu1">核销信息 <span class="pl20">{{sum}}</span> <span class="iconfont icon-xiangyou fr sidebar" :class="menu1?'rotate1':'rotate'"></span></p>
+        <div v-show="menu1">
+          <p class="enc-data" v-for="(item,index) in list">{{item.borrowTitle}}<span class="fr">{{item.borrowMoney}}</span><i class="iconfont icon-shanchu1"  @click="deleteFiles(index)"></i></p>
+        </div>
+      </div>
+      <ul class="user-input-list-warp mt20 ">
+        <li class="column btDDDEE3">
+          <span class="user-input-left ">支付信息</span>
+        </li>
+        <!--  <li>
+            <span class="user-input-left">实付单位</span>
+            <div class="user-input-right">
+              <input type="text" placeholder="请选择（必选）"   readonly   >
+            </div>
+            <i class="iconfont icon-xiangyou"></i>
+          </li>-->
+        <li>
+          <span class="user-input-left">付款方式</span>
+          <div class="user-input-right"  id="repayment" >
+            <input type="text"    readonly onfocus="this.blur()"    placeholder="请选择（必选）"  :value="receiptType"  >
+          </div> <i class="iconfont icon-xiangyou"></i>
+        </li>
+        <li>
+          <span class="user-input-left">收款银行</span>
+          <div class="user-input-right">
+            <input type="text"    :disabled="!(receiptType=='银行转账')"   v-model="bankName" style="background-color:#FFFFFF" :placeholder="receiptType=='银行转账'?'请选择（必选）':''">
+          </div><i v-show="(receiptType=='银行转账')" class="iconfont icon-xiangyou"  id="savings"></i>
+        </li>
+        <li>
+          <span class="user-input-left">收款账号</span>
+          <div class="user-input-right">
+            <input type="text"     v-model="bankAccount"  style="background-color:#FFFFFF"   :disabled="!(receiptType=='银行转账')"  >
+          </div>
+        </li>
+
+      </ul>
+      <div class="pr">
+        <textarea class="userinput-textares" placeholder="报销说明"  v-model="reimburseRemark"   ></textarea>
+      </div>
+      <!--<ul class="container">-->
+      <!--<li><img src="../../images/u25292.png" width="50" class="p10" alt=""></li>-->
+      <!--</ul>-->
+      <div class="enc-warp  has-bottom mb20">
+        <p class="enc-title">附件<input type="file" name="" id="uploadInput" multiple  style="position:relative;top: 0px;right: -5.6rem;height:35px;width:45px;opacity:0;"/><i class="iconfont icon-fujian1 "></i></p>
+        <p class="enc-data" v-for="(item,index) in file">{{item.name}}<i class="iconfont Garbage icon-shanchu1" @click="deleteFiles1(index)"></i></p>
+        <p class="enc-data" v-for="(item,index) in file1">{{item.name}}<i class="iconfont Garbage icon-shanchu1" @click="deleteFiles3(index)"></i></p>
+      </div>
+    </div>
+  </div >
+  <div class="fixed-bottom details-bg ">
+    <div class="details-bottom-button">
+      <div class="details-buttom-left"  @click="save()" :class="initData.isUseFlow==0?'W-100':''">保存</div>
+      <div class="details-buttom-right" @click="submit()"  v-show="initData.isUseFlow==1">提交</div>
+    </div>
+  </div>
+</div>

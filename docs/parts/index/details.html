@@ -1,0 +1,108 @@
+<div class="fixed-warp common" v-bind:class="{pageShow:pageShow}">
+  <div class="fixed-top">
+    <div class="mobile-top-nag">
+      <div class="nag-button"><i class="iconfont icon-fanhui" v-on:click="backOff()"></i><a href="/index"><i class="iconfont icon-guanbi"></i></a></div>
+      {{data.a.type}}</div>
+  </div>
+  <!--报销申请 已完成 -->
+  <div class="fixed" v-if="data.c.processDefinitionKey=='personal_reimbursement'" v-bind:class="{noFooter:data.buttom.length==0}">
+    <div class="data-width-hide">
+      <div class="details-top-tip" v-if="data.a.reimburse.curApproveUserName"><i class="iconfont icon-dengdai"></i><span>待 {{data.a.reimburse.curApproveUserName}}</span><span>审核</span></div>
+      <div class="details-data-warp"> <img v-if="data.c.tipImgSrc" v-bind:src="data.c.tipImgSrc" class="res-img">
+        <p class="details-title" v-on:click="showDom($event)">基本信息<span class="dsc-change"><span class="change-text">收起</span><i class="iconfont icon-iconfontunfold"></i></span></p>
+        <div class="list-warp">
+          <ul class="details-list">
+            <li><span>单<span class="nsb">占位</span>号<em>：</em></span>{{data.a.reimburse.reimburseSn}}</li>
+            <li><span>主<span class="nsb">占位</span>题<em>：</em></span>{{data.a.reimburse.reimburseTitle}}</li>
+            <li><span>报&nbsp;&nbsp;销&nbsp;&nbsp;人<em>：</em></span>{{data.a.reimburse.applyOrgName}} {{data.a.reimburse.createbyName}}</li>
+            <!--<li><span>付款性质<em>：</em></span>{{data.a.reimburse.paymentPropertyName}}</li>-->
+            <li><span>报销金额<em>：</em></span>{{data.a.reimburse.relTaxMoney|setMoney}}</li>
+            <li><span>含税合计<em>：</em></span>{{data.a.reimburse.totalMoney|setMoney}}</li>
+            <li><span>税<span class="nsb">占位</span>额<em>：</em></span>{{data.a.reimburse.taxMoney|setMoney}}</li>
+            <li><span>核销借款<em>：</em></span>{{data.a.reimburse.relTotalMoney|setMoney}}</li>
+            <li><span>归属日期<em>：</em></span>{{data.a.reimburse.collectionDate|setT}}</li>
+            <li v-if="data.a.reimburse.paymentPropertyName"><span>付款性质<em>：</em></span>{{data.a.reimburse.paymentPropertyName}}</li> 
+            <!--<li><span>区<span class="nsb">占位</span>域<em>：</em></span>{{data.a.reimburse.areaOrgName}}</li>-->
+          </ul>
+        </div>
+      </div>
+      <div class="details-data-warp dsc-hide">
+        <p class="details-title" v-on:click="showDom($event)">报销明细 {{data.a.reimburse.totalMoney|setMoney}} <span class="dsc-change"><span class="change-text">展开</span><i class="iconfont icon-iconfontunfold"></i></span></p>
+        <div class="list-warp"><div class="details-list" style="border: none;padding: 0">
+          <div class="pay-list-warp" v-for="d in data.a.itemList" v-on:click="goDsc(d,'报销详情',1)"><span class="money-color">¥ {{d.taxTotalMoney|setMoney}}</span><span class="pay-list-clic">{{d.businessDate|setT}}<i
+                            class="iconfont icon-xiangyou"></i></span></div></div>
+        </div>
+      </div>
+      <div class="details-data-warp dsc-hide" v-if="data.a.borrowList2&&data.a.borrowList2.length>0">
+        <p class="details-title" v-on:click="showDom($event)">借款核销 {{data.a.reimburse.relTotalMoney|setMoney}}<span class="dsc-change"><span><span class="change-text">展开</span></span><i class="iconfont icon-iconfontunfold"></i></span></p>
+        <div class="list-warp">
+          <ul class="details-list non-width">
+            <li v-for="bd in data.a.borrowList2"><span>{{bd.borrowTitle}}</span>
+              <p class="right-text">{{bd.relRemMoney|setMoney}}</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="details-data-warp">
+        <p class="details-title" v-on:click="showDom($event)">支付信息<span class="dsc-change"><span><span class="change-text">收起</span></span><i class="iconfont icon-iconfontunfold"></i></span></p>
+        <div class="list-warp">
+          <ul class="details-list">
+            <!--<li><span>实际付款<em>：</em></span>{{data.a.reimburse.payMoney}}</li>--> 
+            <!--<li><span>支付单位<em>：</em></span>{{data.a.reimburse.payOrgUnitName}}</li>--> 
+            <!--<li><span>支付部门<em>：</em></span>{{data.a.reimburse.payOrgDepartmentName}}</li>-->
+            <li><span>付款方式<em>：</em></span>{{data.a.reimburse.paymentMode==1?'银行':'现金'}}</li>
+            <li><span>收&nbsp;&nbsp;款&nbsp;&nbsp;人<em>：</em></span>{{data.a.reimburse.payee}}</li>
+            <li><span>收款账号<em>：</em></span>{{data.a.reimburse.receiptBankAccount}}</li>
+            <li><span>收款银行<em>：</em></span>{{data.a.reimburse.receiptBank}}</li>
+          </ul>
+          <p class="details-dsc" v-if="data.a.reimburse.reimburseRemark">{{data.a.reimburse.reimburseRemark}}</p>
+        </div>
+      </div>
+      <div class="details-data-warp dsc-hide" v-if="data.a.attachmentList&&data.a.attachmentList.length>0">
+        <p class="details-title" v-on:click="showDom($event)">单据附件 <i class="iconfont icon-xiangyou details-other-click"></i></p>
+        <div class="other-list-warp">
+          <ul class="attachment-list get-height">
+            <li v-for="d in data.a.attachmentList"><a v-bind:href="d.downloadUrl" target="_blank">{{d.name}}</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="details-data-warp" v-if="data.b&&data.b.length>0">
+        <p class="details-title" v-on:click="showDom($event)">审批流程 <i class="iconfont icon-xiangyou details-other-click"></i></p>
+        <div class="other-list-warp">
+          <div class="flow-warp get-height">
+            <ul class="flow-list">
+              <li v-for="d in data.b">
+                <div class="flow-data-warp"><i class="iconfont icon-yizhifu"></i>
+                  <div class="flow-data"><i class="flow-icon"></i>
+                    <div class="flow-img">{{d.approveUserName?d.approveUserName.slice(-2):''}}</div>
+                    <span class="flow-time">{{d.createTimeDesc}}</span>
+                    <div class="flow-right-data">
+                      <p class="flow-name">{{d.approveUserName}}</p>
+                      <p class="flow-tip">{{d.approveTaskName}}<span>{{d.approveResult}}</span></p>
+                      <p class="flow-dsc" v-if="d.approveOpinion!=''">{{d.approveOpinion}}</p>
+                      <div class="other-file" v-if="d.attachmentList&&d.attachmentList.length>0"><span>附件：</span><a v-for="s in d.attachmentList" v-bind:href="s.path" target="_blank">{{s.originalName}}</a></div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="h45 iblock"></div>
+    </div>
+  </div>
+  <div class="fixed-bottom details-bg" v-if="data.buttom.length>0">
+    <div class="details-bottom-button" v-if="data.buttom[0]==1">
+      <div class="details-buttom" v-on:click="oper(data.c)">撤回</div>
+    </div>
+    <div class="details-bottom-button" v-if="data.buttom[0]==2">
+      <div class="details-buttom-left" v-on:click="dele(data.c)">删除</div>
+      <div class="details-buttom-right" v-on:click="edit(data.c)">编辑</div>
+    </div>
+    <div class="details-bottom-button" v-if="data.buttom[0]==3">
+      <div class="details-buttom-left" v-on:click="cancellation(data.c)">作废</div>
+      <div class="details-buttom-right" v-on:click="edit(data.c)">编辑</div>
+    </div>
+  </div>
+</div>
