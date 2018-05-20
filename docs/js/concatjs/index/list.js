@@ -147,7 +147,7 @@
 		var detailsUrl = {
 			bottom: '/nets-authority/api/workflow/get_business_form_button_list', //获取业务表单的操作按钮（同意、撤回等）
 			allHas: '/nets-authority/api/workflow/opinion_list', //获取流程与附件
-			personal_reimbursement: '/nets-budget/api/reimburse/get_by_id', //个人报销	
+			personal_reimbursement: './api//get_by_id.json', //个人报销
 		};
 		var thisUrl = 'personal_reimbursement';
 		var allData = {
