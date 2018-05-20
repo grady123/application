@@ -138,7 +138,7 @@
 			c: {},
 			buttom: [] //a为详情信息，b为流程信息，c为该列的信息,buttom请求到的buttom信息 
 		};
-		var urlB = './api/lists.json'; //请求列表地址
+		var urlB = './api/list.json'; //请求列表地址
 		var urlD = '/nets-budget/api/reimburse/recall'; //撤消操作URL 
 		var urlDele = '/nets-budget/api/reimburse/delete'; //删除列表
 		var Cancel = '/nets-budget/api/reimburse/cancel'; //作废列表
