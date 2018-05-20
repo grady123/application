@@ -426,7 +426,7 @@
 				userInfo.pageNum = 1;
 				$("#scro").scrollTop(0);
 			}
-			T.MyPost(urlB, GetList, userInfo);
+			T.MyGet(urlB, GetList, userInfo);
 		}
 		//得到筛选列表
 		function GetType(data) {
